@@ -4,3 +4,7 @@ class Logic:
 
     def subtract(self, a, b):
         return a - b
+
+class Tests:
+    def _sum(self, a, b):
+        return a + b
