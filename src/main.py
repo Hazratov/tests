@@ -6,5 +6,5 @@ class Logic:
         return a - b
 
 class Tests:
-    def _sum(self, a, b):
+    def _sum(self, a: int, b: int) -> int:
         return a + b

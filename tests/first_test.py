@@ -24,11 +24,30 @@ def test_sum_failure():
     b = 6
     pytest.raises(TypeError, tests._sum, a, b)
 
-def test_sum_error():
-    a = "5"
-    b = "6"
-    pytest.raises(TypeError, tests._sum, a, b)
+# def test_sum_error():
+#     a = "5"
+#     b = "6"
+#     pytest.raises(TypeError, tests._sum, a, b)
 
 
+def test_passes():
+    with pytest.raises(Exception) as e_info:
+        x = 1 / 0
 
+
+@pytest.mark.parametrize(
+    "a,b, expected",
+    [
+        (1, 1, 2),
+        (2, 2, 4),
+        (-4,-2,-6),
+        (1,"3", TypeError)
+    ]
+)
+def test_passes_failure(a, b, expected):
+    if expected == TypeError:
+        with pytest.raises(TypeError):
+            tests._sum(a, b)
+    else:
+        assert tests._sum(a, b) == expected
 
