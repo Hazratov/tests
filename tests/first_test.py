@@ -1,7 +1,9 @@
 from src.main import Logic, Tests
 import pytest
 from contextlib import nullcontext as does_not_raise
-from src.algorithm import close_with_zero
+from src.algorithm import Solving
+
+solving = Solving
 
 
 # obj = Logic()
@@ -62,7 +64,7 @@ class TestClass:
         ]
     )
     def test_passes_success(self,x, expected):
-        assert close_with_zero(x) == expected
+        assert solving.close_with_zero(self,x) == expected
 
     @pytest.mark.parametrize(
         "a, b, result, expectation",
@@ -75,3 +77,17 @@ class TestClass:
     def test_minus(self,a,b,result, expectation):
         with expectation:
             assert tests._minus(a,b) == result
+
+
+
+    @pytest.mark.parametrize(
+        "nums, result, expectation",
+        [
+            ([1,2,3], False, does_not_raise()),
+            ([1,2,3,1], True, does_not_raise()),
+            (2, TypeError, pytest.raises(TypeError)),
+        ]
+    )
+    def test_contains_duplicate(self, nums, result, expectation):
+        with expectation:
+            assert solving.find_duplicate(self,nums) == result
